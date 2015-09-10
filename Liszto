@@ -13,11 +13,16 @@ null' h = 0
 
 --pembatas
 
-take' x = x
+take' n (x:xs)
+  | n == 0 = []
+  | n /= 0 = [x] ++ take' (n-1) xs
 
 --pembatas
 
-drop' x = x
+drop' n [] = []
+drop' n (x:xs)
+  | n == 0 = x:xs
+  | n /= 0 = drop' (n-1) xs
 
 --pembatas
 
@@ -37,7 +42,10 @@ filter' x = x
 
 --pembatas
 
-delete' x = x
+delete' _ [] = []
+delete' n (x:xs)
+  | n == x = (xs)
+  | n /= x = [x] ++ delete' n (xs)
 
 --pembatas
 
@@ -77,19 +85,27 @@ scanl1' x = x
 
 --pembatas
 
-elem' x = x
+elem' _ [] = False
+elem' n (x:xs)
+    | n == (x) = True
+    | n /= (x) = elem' n (xs)
 
 --pembatas
 
-notElem' x = x
+notElem' _ [] = True
+notElem' n (x:xs)
+  | n == (x) = False
+  | n /= (x) = notElem' n (xs)
 
 --pembatas
 
-head' x = x
+head' [n] = n
+head' (x:xs) = x
 
 --pembatas
 
-length' x = x
+length' [] = 0
+length' (x:xs) = 1 + length' xs
 
 --pembatas
 
@@ -97,15 +113,17 @@ reverse' x = x
 
 --pembatas
 
-last' x = x
+last' [n] = n
+last' (x:xs) = last' xs
 
 --pembatas
 
-tail' x = x
+tail' (x:xs) = xs
 
 --pembatas
 
-init' x = x
+init' [n] = []
+init' (x:xs) = [x] ++ init' (xs)
 
 --pembatas
 
@@ -150,7 +168,9 @@ sum' [] = 0
 
 --pembatas
 
-product' x = x
+product' [] = 1
+product' [n] = n
+product' (x:xs) = (x) * product' (xs)
 
 --pembatas
 
@@ -190,7 +210,8 @@ any' x = x
 
 --pembatas
 
-insert' x = x
+insert' n [] = [n]
+insert' n (x:xs) = n : (x:xs)
 
 --pembatas
 
