@@ -34,7 +34,8 @@ snd' a b = b
 
 --pembatas
 
-map' x = x
+map' _ [] = []
+map' n (x:xs) = n x : map' n (xs)
 
 --pembatas
 
@@ -221,7 +222,8 @@ zipWith3' x = x
 
 -- 1.b
 
-nub' x = x
+nub' [] = []
+nub' (x:xs) = (x:xs)
 
 --pembatas
 
