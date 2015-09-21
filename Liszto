@@ -62,7 +62,9 @@ foldl1' x = x
 
 --pembatas
 
-zip' x = x
+zip' [n] [] = []
+zip' [] [n] = []
+zip' (x:xs) (y:ys) = [(x,y)] ++ zip' xs ys
 
 --pembatas
 
@@ -154,11 +156,17 @@ intercalate' x = x
 
 --pembatas
 
-and' x = x
+and' [] = True
+and' (x:xs)
+  | x == False = False
+  | x /= False = and' xs
 
 --pembatas
 
-or' x = x
+or' [] = False
+or' (x:xs)
+  | x == True = True
+  | x /= True = or' xs
 
 --pembatas
 
